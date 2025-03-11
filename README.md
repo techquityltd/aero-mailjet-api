@@ -32,7 +32,6 @@ The package stores abandoned cart details in Mailjet contact properties:
 | currency      | String | Currency of the cart (e.g., GBP, USD) |
 | currency_symbol     | String | Currency symbol of the cart (e.g., £, $) |
 | cart_count    | Integer| Number of items in the cart    |
-<!-- | cart_url      | String | URL to resume the checkout    | -->
 | last_activity | Date   | Timestamp of last cart update |
 | last_ordered_at | Date   | Timestamp of last order |
 
