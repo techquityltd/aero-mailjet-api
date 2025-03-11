@@ -1,0 +1,21 @@
+{
+  "name": "techquity/aero-mailjet-api",
+  "description": "",
+  "require": {
+    "php": "^7.2|^8.0",
+    "aerocommerce/core": "^0",
+    "mailjet/mailjet-apiv3-php": "^1.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Techquity\\AeroMailjetApi\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Techquity\\AeroMailjetApi\\ServiceProvider"
+      ]
+    }
+  }
+}
