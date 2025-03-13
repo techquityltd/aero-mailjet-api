@@ -23,6 +23,15 @@ class AddContactToMailjet implements ShouldQueue
 
     public function handle(): void
     {
-        MailjetApi::addContact($this->email);
+        // Check if the contact exists in Mailjet
+        $contactExists = MailjetApi::checkContactExists($this->email);
+        
+        if ($contactExists) {
+            // If the contact exists, do not change their marketing subscription status
+            return;
+        }
+
+        // If they are new, add them with "excluded" status to avoid marketing emails
+        MailjetApi::addContact($this->email, 'excluded');
     }
 }

@@ -13,17 +13,29 @@ class MailjetApi
         return new Client(setting('mailjet-api.key'), setting('mailjet-api.secret'), true, ['version' => 'v3']);
     }
 
+    public static function checkContactExists(string $email): bool
+    {
+        $mj = self::client();
+        
+        $response = $mj->get(Resources::$Contact, ['id' => $email]);
+
+        return $response->success();
+    }
+
     /**
      * Add a contact to Mailjet.
      */
-    public static function addContact(string $email): void
+    public static function addContact(string $email, string $status = 'excluded'): void
     {
         try {
             $mj = self::client();
 
             // Add contact if not exists
             $response = $mj->post(Resources::$Contact, [
-                'body' => ['Email' => $email, 'IsExcludedFromCampaigns' => false]
+                'body' => [
+                        'Email' => $email,
+                        'IsExcludedFromCampaigns' => $status === 'excluded' ? true : false,
+                    ]
             ]);
 
             if (!$response->success()) {
