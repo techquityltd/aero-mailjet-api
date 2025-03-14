@@ -30,12 +30,20 @@ class MailjetApi
         try {
             $mj = self::client();
 
-            // Add contact if not exists
+            // Check if contact already exists
+            $existsResponse = $mj->get(Resources::$Contact, ['id' => $email]);
+
+            if ($existsResponse->success()) {
+                // Contact exists, do NOT update IsExcludedFromCampaigns
+                return;
+            }
+
+            // If the contact doesn't exist, add them with IsExcludedFromCampaigns set correctly
             $response = $mj->post(Resources::$Contact, [
                 'body' => [
-                        'Email' => $email,
-                        'IsExcludedFromCampaigns' => $status === 'included' ? false : true,
-                    ]
+                    'Email' => $email,
+                    'IsExcludedFromCampaigns' => $status === 'included' ? false : true, // Set exclusion only for new contacts
+                ]
             ]);
 
             if (!$response->success()) {
