@@ -23,16 +23,17 @@ AeroMailjetApi is a Laravel package for integrating Mailjet with an AeroCommerce
 ## Contact Properties in Mailjet
 The package stores abandoned cart details in Mailjet contact properties:
 
-| Property Name   | Type    | Description                        |
-|---------------|--------|--------------------------------|
-| firstname    | Text   | Customer's first name |
-| name    | Text   | Customer's full name |
-| cart_items    | Text   | JSON of cart items (name, price, quantity) |
-| cart_total    | Float  | Total value of the cart        |
-| currency      | String | Currency of the cart (e.g., GBP, USD) |
-| currency_symbol     | String | Currency symbol of the cart (e.g., £, $) |
-| cart_count    | Integer| Number of items in the cart    |
-| last_activity | Date   | Timestamp of last cart update |
-| last_ordered_at | Date   | Timestamp of last order |
+| **Property Name**  | **Type**   | **Description** |
+|-------------------|-----------|------------------------------------------------|
+| `firstname`      | Text      | Customer's first name |
+| `name`           | Text      | Customer's full name |
+| `cart_items`     | Text      | JSON containing cart item details (name, price, quantity) |
+| `cart_total`     | Float     | Total value of the cart |
+| `currency`       | String    | Cart currency (e.g., GBP, USD) |
+| `currency_symbol` | String   | Currency symbol (e.g., £, $) |
+| `cart_count`     | Integer   | Number of items in the cart |
+| `basket_only`    | Boolean   | Indicates if the customer should only receive basket-related emails |
+| `last_activity`  | Date      | Timestamp of the last cart update |
+| `last_ordered_at` | Date     | Timestamp of the last completed order |
 
 These properties can be used in Mailjet email templates to create personalized abandoned cart emails.

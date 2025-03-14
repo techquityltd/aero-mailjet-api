@@ -25,7 +25,7 @@ class MailjetApi
     /**
      * Add a contact to Mailjet.
      */
-    public static function addContact(string $email, string $status = 'excluded'): void
+    public static function addContact(string $email, string $status = 'included'): void
     {
         try {
             $mj = self::client();
@@ -34,7 +34,7 @@ class MailjetApi
             $response = $mj->post(Resources::$Contact, [
                 'body' => [
                         'Email' => $email,
-                        'IsExcludedFromCampaigns' => $status === 'excluded' ? true : false,
+                        'IsExcludedFromCampaigns' => $status === 'included' ? false : true,
                     ]
             ]);
 
@@ -88,6 +88,7 @@ class MailjetApi
                         ['Name' => 'currency', 'Value' => $order->currency->code],
                         ['Name' => 'currency_symbol', 'Value' => $order->currency->symbol],
                         ['Name' => 'cart_count', 'Value' => count($order->items)],
+                        ['Name' => 'basket_only', 'Value' => true],
                         ['Name' => 'last_activity', 'Value' => now()->toDateTimeString()],
                     ]
                 ]
@@ -124,10 +125,11 @@ class MailjetApi
                 'id' => $email,
                 'body' => [
                     'Data' => [
-                        // ['Name' => 'cart_items', 'Value' => ''],
-                        // ['Name' => 'cart_total', 'Value' => ''],
-                        // ['Name' => 'cart_count', 'Value' => '0'],
-                        // ['Name' => 'cart_url', 'Value' => ''],
+                        ['Name' => 'cart_items', 'Value' => ''],
+                        ['Name' => 'cart_total', 'Value' => ''],
+                        ['Name' => 'cart_count', 'Value' => '0'],
+                        ['Name' => 'cart_url', 'Value' => ''],
+                        ['Name' => 'basket_only', 'Value' => false],
                         ['Name' => 'last_ordered_at', 'Value' => now()->toDateTimeString()],
                     ]
                 ]
