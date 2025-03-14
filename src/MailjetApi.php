@@ -124,9 +124,9 @@ class MailjetApi
                 'id' => $email,
                 'body' => [
                     'Data' => [
-                        ['Name' => 'cart_items', 'Value' => ''],
-                        ['Name' => 'cart_total', 'Value' => ''],
-                        ['Name' => 'cart_count', 'Value' => '0'],
+                        // ['Name' => 'cart_items', 'Value' => ''],
+                        // ['Name' => 'cart_total', 'Value' => ''],
+                        // ['Name' => 'cart_count', 'Value' => '0'],
                         // ['Name' => 'cart_url', 'Value' => ''],
                         ['Name' => 'last_ordered_at', 'Value' => now()->toDateTimeString()],
                     ]
